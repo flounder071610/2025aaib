@@ -1,1 +1,74 @@
+///week05-1.cpp
+///陣列 Array
+# include <stdio.h>
+int main()
+{///陣列宣告有4格，裡面初始直放右邊大括號
+    int a[4]={10,20,30,40};
+    for(int i=0;i<4;i++){
+        printf("%d ",a[i]);
+    }
+    printf("\n");///跳行
+    a[0]=99;///某一格，改他的值
+    for(int i=0;i<4;i++){
+        printf("%d ",a[i]);
+    }
+    printf("\n");///跳行
+}
+
+
+//week05-2.cpp
+//SOIT108_Base_007
+#include <stdio.h>
+int main()
+{
+	int a[10];
+	for(int i=0;i<10;i++){
+		scanf("%d",&a[i]);
+	}
+	for(int i=9;i>=0;i--){
+		printf("%d ",a[i]);
+	}
+}
+
+
+//week05-3.cpp
+//LeetCode 2206. Divide Array Into Equal Pairs
+class Solution {
+public:
+    bool divideArray(vector<int>& nums) {
+        int a[501] = {};//開501大小陣列，全部補0
+        int odd=0;
+        for(int i=0;i<nums.size();i++){
+            int now = nums[i];//現在處理的數字
+            a[now]++;//now增加1次
+            if(a[now]%2==0)odd--;//家完事偶數，少1個奇數
+            else odd++;//多1個奇數
+        }
+        if(odd==0) return true;
+        else return false;
+
+        
+    }
+};
+
+
+//week05-4.cpp
+// LeetCode 3191. Minimum Operations to Make Binary Array Elements Equal to One I
+class Solution {
+public:
+    int minOperations(vector<int>& nums) {
+        int ans = 0;//要翻牌幾次
+        for(int i=0;i<nums.size()-2;i++){
+            if(nums[i]==0){//遇到0要翻牌
+                ans++;//翻牌加1次
+                nums[i+1] = 1-nums[i+1];//反過來
+                nums[i+2] = 1-nums[i+2];//反過來
+            }
+        }
+        int N = nums.size();
+        if(nums[N-1]==0 ||nums[N-2]==0) return-1;//最後有0失敗
+        return ans;//可以成功翻牌全部變成1
+    }
+};
+
 
